@@ -5,9 +5,13 @@
 
 ::selection {
   color: var(--white);
-  background:var(--dark)
+  background:var(--primary)
 }
 
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 .transition {
   &__default {
     transition: all 0.3s ease-in-out;

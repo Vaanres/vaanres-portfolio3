@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/styles/main';
+@import '~assets/styles/core';
 
 .main-navbar {
   p,

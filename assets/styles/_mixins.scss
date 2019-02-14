@@ -37,12 +37,5 @@
 }
 
 
-@mixin item-hover($color) {
-  $percent: 8%;
-  background-color: $color;
 
-  &:hover {
-    background-color: darken($color, $percent);
-  }
-}
 
