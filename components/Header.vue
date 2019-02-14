@@ -85,7 +85,7 @@ export default {
       width: 100%;
       font-weight: 400;
       color: $secondary;
-      transition: width 0.25s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       &.active {
         color: $primary;
@@ -108,7 +108,7 @@ export default {
         height: 2px;
         border-radius: 2px;
         background: $body-color;
-        transition: width 0.25s ease-in-out;
+        transition: all 0.2s ease-in-out;
         position: relative;
         top: 1rem;
         @include media-breakpoint-up(sm) {

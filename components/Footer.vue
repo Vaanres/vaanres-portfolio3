@@ -7,7 +7,7 @@
           aria-label="See me on Twitter"
           title="See me on Twitter"
           target="_blank"
-          href="#"
+          href="https://twitter.com/vaanres"
         >
           <span class="d-block"> <font-awesome-icon :icon="iconTwitter"/></span>
         </a>
@@ -16,7 +16,7 @@
           aria-label="See me on Facebook"
           title="See me on Facebook"
           target="_blank"
-          href="#"
+          href="https://www.facebook.com/vaanres"
         >
           <span class="d-block"><font-awesome-icon :icon="iconFacebook"/></span>
         </a>
@@ -26,7 +26,7 @@
           aria-label="See me on LinkedIn"
           title="See me on LinkedIn"
           target="_blank"
-          href="#"
+          href="https://www.linkedin.com/in/nguyen-le-van/"
         >
           <span class="d-block">
             <font-awesome-icon :icon="iconLinkedin"
@@ -38,7 +38,7 @@
           aria-label="See me on Behance"
           title="See me on Behance"
           target="_blank"
-          href="#"
+          href="https://behance.net/vaanres"
         >
           <span class="d-block"><font-awesome-icon :icon="iconBehance"/></span>
         </a>
@@ -47,7 +47,7 @@
     <div class="col-12">
       <div class="d-flex flex-column justify-content-center contact-info">
         <p class="mb-0 text-center text-secondary">
-          <span style="font-weight:500">Van Nguyen</span> —
+          <span class="font-weight-medium">Van Nguyen</span> —
           <a
             href="mailto:vaanres@gmail.com"
             aria-label="Send an email to Van"
@@ -89,7 +89,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~assets/styles/main';
+@import '~assets/styles/core';
+
 footer {
   a {
     color: $gray-500;
@@ -98,6 +99,10 @@ footer {
     &:hover {
       color: $body-color;
     }
+  }
+
+  .social-link {
+    font-size: 1rem;
   }
 
   .contact-info {
