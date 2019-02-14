@@ -1,0 +1,17 @@
+@import "./variables";
+@import "./customized_bootstrap";
+@import "./mixins";
+@import "./functions";
+
+::selection {
+  color: var(--white);
+  background:var(--dark)
+}
+
+.transition {
+  &__default {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
