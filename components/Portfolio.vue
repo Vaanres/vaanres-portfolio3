@@ -60,9 +60,7 @@ export default {
   },
   created() {
     //console.log('store', this.$store.state.portfolio.list)
-    if (!this.$store.state.portfolio.list) {
-      this.fetchData()
-    }
+    this.fetchData()
   },
   methods: {
     async fetchData() {
@@ -70,7 +68,7 @@ export default {
         if (response && response.data && response.data.projects) {
           console.log('Get data successfull')
           this.projects = response.data.projects
-          this.$store.commit('portfolio/add', this.projects)
+          //this.$store.commit('portfolio/add', this.projects)
         }
       })
     }
