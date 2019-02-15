@@ -2,10 +2,9 @@
   <div>
     <div class="container">
       <Header />
+      <nuxt />
+      <Footer />
     </div>
-    <nuxt />
-
-    <Footer />
   </div>
 </template>
 
@@ -23,4 +22,8 @@ export default {
 
 <style lang="scss">
 @import '~assets/styles/main';
+
+body {
+  background: $gray-100;
+}
 </style>

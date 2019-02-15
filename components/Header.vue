@@ -1,6 +1,6 @@
 <template>
   <b-navbar
-    class="main-navbar px-0 my-5 flex-column flex-sm-row align-items-stretch"
+    class="main-navbar px-0 mb-2 mt-5 mb-sm-5 flex-column flex-sm-row align-items-stretch"
     toggleable="sm"
     variant="faded"
     type="light"

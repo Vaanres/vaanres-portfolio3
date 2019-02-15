@@ -21,5 +21,7 @@ module.exports = {
     $nuxt: true
   },
   // add your custom rules here
-  rules: {}
+  rules: {
+    'no-console': 'off'
+  }
 }

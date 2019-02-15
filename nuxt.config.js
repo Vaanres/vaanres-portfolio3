@@ -1,4 +1,5 @@
 // const pkg = require('./package')
+const webpack = require('webpack')
 const meta = require('./meta')
 module.exports = {
   mode: 'universal',
@@ -87,7 +88,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#3F51B5' },
 
   /*
    ** Global CSS
@@ -97,7 +98,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/vue-lazyload'],
 
   /*
    ** Nuxt.js modules
@@ -105,6 +106,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     // Doc: https://bootstrap-vue.js.org/docs/
     [
       'bootstrap-vue/nuxt',
@@ -118,9 +120,16 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
+    proxy: true
     // See https://github.com/nuxt-community/axios-module#options
   },
-
+  proxy: {
+    '/api/': {
+      target:
+        'http://www.behance.net/v2/users/Vaanres/projects?api_key=A3XrFvC6jnX6dLGSipermgOApEKZ6AU6',
+      pathRewrite: { '^/api/': '' }
+    }
+  },
   /*
    ** Build configuration
    */
@@ -142,5 +151,8 @@ module.exports = {
         })
       }
     }
+  },
+  router: {
+    middleware: 'cors'
   }
 }
