@@ -19,6 +19,18 @@ body {
   }
 }
 
+.page {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.2s ease;
+  }
+
+  &-enter,
+  &-leave-active {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
 
 .transition {
   &__default {

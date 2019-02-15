@@ -1,5 +1,5 @@
 // const pkg = require('./package')
-const webpack = require('webpack')
+
 const meta = require('./meta')
 module.exports = {
   mode: 'universal',
@@ -151,8 +151,5 @@ module.exports = {
         })
       }
     }
-  },
-  router: {
-    middleware: 'cors'
   }
 }

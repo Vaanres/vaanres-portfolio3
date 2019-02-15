@@ -6,22 +6,20 @@
     type="light"
   >
     <!-- <b-navbar-toggle target="nav_collapse" right></b-navbar-toggle> -->
-    <b-navbar-brand class="d-flex justify-content-center p-0" href="#">
+    <b-navbar-brand class="d-flex justify-content-center p-0" href="/">
       <b-media
         no-body
         vertical-align="center"
         class="d-inline-flex align-items-center mb-5 mb-sm-0"
       >
         <b-media-aside>
-          <b-img
-            blank
-            blank-color="#ccc"
-            width="50"
-            height="50"
-            alt="placeholder"
-            class="mr-3 rounded"
+          <img
+            src="images/svg/Logo.svg"
+            class="img-fluid mr-3"
+            alt="Van Nguyen — UX/UI Designer"
           />
         </b-media-aside>
+
         <b-media-body class="text-uppercase">
           <p class="m-0 font-weight-bold">Title</p>
           <p class="m-0 font-weight-light text-secondary">SubTitle</p>

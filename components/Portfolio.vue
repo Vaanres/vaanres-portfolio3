@@ -39,7 +39,6 @@
 <script>
 export default {
   name: 'Portfolio',
-  middleware: 'cors',
   data() {
     return {
       projects: [],
@@ -59,14 +58,19 @@ export default {
       return ''
     }
   },
-  mounted() {
-    this.fetchData()
+  created() {
+    //console.log('store', this.$store.state.portfolio.list)
+    if (!this.$store.state.portfolio.list) {
+      this.fetchData()
+    }
   },
   methods: {
     async fetchData() {
-      await this.$axios.get('/api/').then(response => {
+      await this.$axios.get('/api/', { progress: false }).then(response => {
         if (response && response.data && response.data.projects) {
+          console.log('Get data successfull')
           this.projects = response.data.projects
+          this.$store.commit('portfolio/add', this.projects)
         }
       })
     }

@@ -51,7 +51,7 @@
           <a
             href="mailto:vaanres@gmail.com"
             aria-label="Send an email to Van"
-            title="Send an email to Van"
+            title="Send an email to me"
             >Vaanres@gmail.com</a
           >
         </p>
