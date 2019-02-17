@@ -1,38 +1,46 @@
 <template>
-  <div class="portfolio">
-    <div
-      v-for="(item, index) in projects"
-      :key="index"
-      class="portfolio__item d-flex rounded embed-responsive embed-responsive-4by3"
-      :style="{ backgroundImage: `url('${item.covers.max_808}')` }"
-    >
-      <!-- v-lazy:background-image="item.covers.max_808" -->
-      <!-- :style="{ backgroundImage: `url('${item.img}')` }" -->
-      <a
-        target="_blank"
-        :href="item.url"
-        class="portfolio__item__card d-flex flex-column justify-content-between p-3"
+  <div>
+    <div v-if="loading" class="portfolio">
+      <div
+        v-for="n in 6"
+        :key="n"
+        class="skeleton__item d-flex rounded embed-responsive embed-responsive-4by3"
+      ></div>
+    </div>
+    <div v-else class="portfolio">
+      <div
+        v-for="(item, index) in projects"
+        :key="index"
+        v-lazy:background-image="item.covers.max_808"
+        class="portfolio__item d-flex rounded embed-responsive embed-responsive-4by3"
       >
-        <div class="d-flex justify-content-center">
-          <div class="d-inline-flex rounded-pill py-1 px-3 text-dark bg-dark">
-            <small class="text-uppercase text-white"
-              >View details on Behance</small
+        <!-- :style="{ backgroundImage: `url('${item.covers.max_808}')` }" -->
+        <a
+          target="_blank"
+          :href="item.url"
+          class="portfolio__item__card d-flex flex-column justify-content-between p-3"
+        >
+          <div class="d-flex justify-content-center">
+            <div class="d-inline-flex rounded-pill py-1 px-3 text-dark bg-dark">
+              <small class="text-uppercase text-white"
+                >View details on Behance</small
+              >
+            </div>
+          </div>
+          <div class="d-flex"></div>
+
+          <div class="d-flex flex-column">
+            <h4 class="item__name mb-1 text-white">
+              {{ item.name }}
+            </h4>
+            <small v-if="item.fields"
+              ><span class="item__description text-white-50">{{
+                item.fields.join(' • ')
+              }}</span></small
             >
           </div>
-        </div>
-        <div class="d-flex"></div>
-
-        <div class="d-flex flex-column">
-          <h4 class="item__name mb-1 text-white">
-            {{ item.name }}
-          </h4>
-          <small v-if="item.fields"
-            ><span class="item__description text-white-50">{{
-              item.fields.join(' • ')
-            }}</span></small
-          >
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -41,16 +49,8 @@ export default {
   name: 'Portfolio',
   data() {
     return {
-      projects: [],
-      items: [
-        {
-          name: 'Test1',
-          description:
-            'Description 123 Description 123 Description 123 Description 123',
-          img: 'https://via.placeholder.com/500',
-          link: 'https://www.google.com'
-        }
-      ]
+      loading: true,
+      projects: []
     }
   },
   computed: {
@@ -70,6 +70,8 @@ export default {
           //this.$store.commit('portfolio/add', this.projects)
         }
       })
+
+      this.loading = false
     }
   }
 }
@@ -81,6 +83,7 @@ export default {
 .portfolio {
   &__item {
     background: $gray-300;
+    background: radial-gradient($gray-100, $gray-400);
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -111,6 +114,18 @@ export default {
         --item-content-opacity: 1;
       }
     }
+  }
+}
+
+.skeleton {
+  &__item {
+    background: $gray-300;
+    background: radial-gradient($gray-100, $gray-400);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 }
 

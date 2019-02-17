@@ -82,7 +82,15 @@ module.exports = {
         content: 'website'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        lazyload: true,
+        href:
+          'https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i'
+      }
+    ]
   },
 
   /*
@@ -93,7 +101,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/styles/main'],
 
   /*
    ** Plugins to load before mounting the App
@@ -149,6 +157,13 @@ module.exports = {
             fix: true
           }
         })
+      }
+    }
+  },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type)
       }
     }
   }
