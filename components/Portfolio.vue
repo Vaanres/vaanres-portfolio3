@@ -66,7 +66,6 @@ export default {
     async fetchData() {
       await this.$axios.get('/api/', { progress: false }).then(response => {
         if (response && response.data && response.data.projects) {
-          console.log('Get data successfull')
           this.projects = response.data.projects
           //this.$store.commit('portfolio/add', this.projects)
         }
