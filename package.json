@@ -11,7 +11,8 @@
     "gen": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "now-build": "nuxt generate"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
