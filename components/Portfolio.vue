@@ -129,11 +129,13 @@ export default {
     },
 
     async fetchData() {
-      await this.$axios.get('/api/', { progress: false }).then(response => {
-        if (response && response.data && response.data.projects) {
-          this.projects = response.data.projects
-        }
-      })
+      await this.$axios
+        .get('https://vannguyen-uxui.firebaseapp.com/', { progress: false })
+        .then(response => {
+          if (response && response.data && response.data.projects) {
+            this.projects = response.data.projects
+          }
+        })
 
       this.loading = false
     }
