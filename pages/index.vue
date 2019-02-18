@@ -10,7 +10,7 @@
         </p>
       </div>
     </div>
-    <div class="col-12 mb-5">
+    <div class="col-12">
       <Portfolio />
     </div>
   </div>

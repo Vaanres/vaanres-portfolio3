@@ -1,5 +1,5 @@
 // const pkg = require('./package')
-
+import webpack from 'webpack'
 const meta = require('./meta')
 module.exports = {
   mode: 'universal',
@@ -158,7 +158,14 @@ module.exports = {
           }
         })
       }
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        _: 'lodash'
+        // ...etc.
+      })
+    ]
   },
   render: {
     bundleRenderer: {

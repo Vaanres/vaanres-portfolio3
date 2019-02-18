@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="componentKey">
     <div v-if="loading" class="portfolio">
       <div
         v-for="n in 6"
@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       loading: true,
+      componentKey: 0,
       projects: []
     }
   },
@@ -58,16 +59,79 @@ export default {
       return ''
     }
   },
+  mounted() {},
   created() {
-    //console.log('store', this.$store.state.portfolio.list)
     this.fetchData()
   },
+
   methods: {
+    empty(e) {
+      switch (e) {
+        case '':
+        case 0:
+        case '0':
+        case null:
+        case false:
+        case typeof this == 'undefined':
+          return true
+        default:
+          return false
+      }
+    },
+    iDBHandler() {
+      this.iDBCreateNew()
+      var this_ = this
+      var request = self.indexedDB.open('portfolio')
+      request.onsuccess = function() {
+        var db = request.result
+        var tx = db.transaction('projects', 'readonly')
+        var store = tx.objectStore('projects')
+        //var index = store.index('by_id')
+        //var request2 = index.get('123456789')
+
+        store.getAll().onsuccess = function(event) {
+          var matching = event.target.result
+
+          console.log('LOG', !this_.empty(matching))
+          //this_.fetchData()
+
+          if (!this_.empty(matching)) {
+            this.projects = matching
+            //this_.$forceUpdate()
+            console.log('BBB', this.projects)
+          } else {
+            //console.log('Fetchdata')
+            //this_.fetchData()
+          }
+        }
+      }
+    },
+    iDBCreateNew() {
+      var request = self.indexedDB.open('portfolio')
+      request.onupgradeneeded = function() {
+        var db = request.result
+        var store = db.createObjectStore('projects', { keyPath: 'id' })
+        store.createIndex('by_id', 'id', { unique: true })
+      }
+    },
+    iDBAdd() {
+      var this_ = this
+      var request = self.indexedDB.open('portfolio')
+      request.onsuccess = function() {
+        var db = request.result
+        var tx = db.transaction('projects', 'readwrite')
+        var store = tx.objectStore('projects')
+
+        this_.projects.forEach(project => {
+          store.add(project)
+        })
+      }
+    },
+
     async fetchData() {
       await this.$axios.get('/api/', { progress: false }).then(response => {
         if (response && response.data && response.data.projects) {
           this.projects = response.data.projects
-          //this.$store.commit('portfolio/add', this.projects)
         }
       })
 
@@ -98,6 +162,7 @@ export default {
         transparentize($dark, 0.8),
         transparentize($dark, 0)
       );
+
       transition: all 0.25s ease-in-out;
       --item-content-opacity: 0;
       opacity: var(--item-content-opacity);
@@ -131,17 +196,18 @@ export default {
 
 @supports (display: grid) {
   .portfolio {
+    --portfolio-col: 1;
     margin: auto;
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(var(--portfolio-col), 1fr);
 
     @include media-breakpoint-up(sm) {
-      grid-template-columns: repeat(2, 1fr);
+      --portfolio-col: 2;
     }
 
     @include media-breakpoint-up(lg) {
-      grid-template-columns: repeat(3, 1fr);
+      --portfolio-col: 3;
     }
   }
 }
