@@ -16,6 +16,7 @@
           <img
             src="images/svg/Logo.svg"
             class="img-fluid mr-3"
+            loading="lazy"
             alt="Van Nguyen — UX/UI Designer"
           />
         </b-media-aside>
